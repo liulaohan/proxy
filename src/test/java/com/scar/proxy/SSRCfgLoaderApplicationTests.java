@@ -6,18 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.IOException;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProxyApplicationTests {
+public class SSRCfgLoaderApplicationTests {
 	@Autowired
-	private Proxy proxy;
+	private SSRCfgLoader SSRCfgLoader;
 	@Test
 	public void contextLoads() {
 		try {
-			System.out.println(proxy.loadSsFree());
-		} catch (IOException e) {
+			System.out.println(SSRCfgLoader.loadIShadowXSSL());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
