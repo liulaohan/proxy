@@ -10,11 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class SSRCfgLoaderApplicationTests {
 	@Autowired
-	private SSRCfgLoader SSRCfgLoader;
+	private SSRCfgLoader sSRCfgLoader;
 	@Test
 	public void contextLoads() {
 		try {
-			System.out.println(SSRCfgLoader.loadIShadowXSSL());
+			System.out.println(sSRCfgLoader.loadSS8SSL());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

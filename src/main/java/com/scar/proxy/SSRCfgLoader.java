@@ -92,25 +92,30 @@ public class SSRCfgLoader {
         Connection.Response response = Jsoup.connect(URL_ISHADOWX).method(Connection.Method.GET).proxy(proxy).execute();
         List<Element> elements = response.parse().getElementsByClass("hover-text");
         elements.forEach(x -> {
+            x.getElementsByTag("h4").forEach(n -> {
+                if(n.text().contains("IP")) {
+                    System.out.println(n.getElementsByTag("span").get(0).text());
+                } else if(n.text().contains("Port")) {
+                    System.out.println(n.getElementsByTag("span").get(0).text());
+                } else if(n.text().contains("Password")) {
+                    System.out.println(n.getElementsByTag("span").get(0).text());
+                } else if(n.text().contains("Method")) {
+                    System.out.println(StringUtils.substringAfter(n.text(), ":"));
+                }
+            });
             List<Element> nodes = x.getElementsByAttributeValueMatching("data-clipboard-text", "^vmess\\S+");
             if(nodes != null) {
                 nodes.forEach(y -> {
                     System.out.println(y.attr("data-clipboard-text"));
                 });
-            } else {
-                String method = StringUtils.substringAfter(x.getElementsMatchingText("^Method\\S+").text(), "Method:");
-                String ip = x.getElementsMatchingText("^(\\S[^\\.]+\\.)+\\S[^\\.]$").text();
-                System.out.println("------------" + ip);
-                /*long port = Long.parseLong(x.getElementById("portssrc").text());
-                String password = x.getElementById("pwssrc").text();
-                Config cfg = new Config(x.getElementById("ipssrc").text(),
-                        Long.parseLong(x.getElementById("portssrc").text()),
-                        x.getElementById("pwssrc").text(),
-                        method);
-                System.out.println(JSONObject.toJSONString(cfg));*/
             }
-            System.out.println(x.toString());
         });
+        return "";
+    }
+
+    public String loadSS8SSL() throws IOException {
+        Connection.Response response = Jsoup.connect(URL_SS8).method(Connection.Method.GET).proxy(proxy).execute();
+        System.out.println(response.body());
         return "";
     }
 }
