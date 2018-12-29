@@ -34,7 +34,7 @@ public class SSRCfgLoaderApplicationTests {
 
 	@Test
 	public void addFile() throws Exception {
-		sSRCfgLoader.decodeBase64SsrString("MTg0LjE3Mi4yMzMuMTU4OjMwMDI0OmF1dGhfY2hhaW5fYTpub25lOnBsYWluOk1USXpabkpsWldOc2IzVmtMblJyLz9yZW1hcmtzPTU3Nk81WnU5NUx5UjVwYXY2YUdfJmdyb3VwPVUxTlNVMGhCVWtVdVEwOU4mdWRwcG9ydD0yJnVvdD0x");
+		sSRCfgLoader.decodeBase64SsrString("ssr://MTg0LjE3Mi4yMzMuMTU4OjMwMDI0OmF1dGhfY2hhaW5fYTpub25lOnBsYWluOk1USXpabkpsWldOc2IzVmtMblJyLz9yZW1hcmtzPTU3Nk81WnU5NUx5UjVwYXY2YUdfJmdyb3VwPVUxTlNVMGhCVWtVdVEwOU4mdWRwcG9ydD0yJnVvdD0x");
 	}
 
 	public void merge(List<String> ssList, List<Config> configs, Map<String, Object> ...maps) {

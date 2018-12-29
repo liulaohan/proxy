@@ -5,8 +5,10 @@ import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -203,6 +205,11 @@ public class SSRCfgLoader {
     }
 
     public void decodeBase64SsrString(String url) {
+        String protocol = url.contains("ssr://") ? "ssr": url.contains("ss://") ? "ss": "";
+        assert !"".equals(protocol);
+        if("ss".equals(protocol)) {
+            return;
+        }
         url = url.replaceAll("ss(r)?://", "");
         String result = new String(Base64Utils.decodeFromUrlSafeString(url));
         JSONObject object = new JSONObject();
@@ -211,7 +218,7 @@ public class SSRCfgLoader {
             String[] params = paramStr.split("&");
             for(String s: params) {
                 String key = s.split("=")[0];
-                String value = s.split("=")[1];
+                String value = "group".equals(key) || "remarks".equals(key) ? new String(Base64Utils.decodeFromUrlSafeString(s.split("=")[1])): s.split("=")[1];
                 object.put(key, value);
             }
         }
